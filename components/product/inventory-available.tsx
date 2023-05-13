@@ -4,11 +4,15 @@ import { ProductVariant } from 'lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function InventoryAvailable({ variants }: { variants: any }) {
+type InventoryAvailableProps = {
+  variants: ProductVariant[];
+};
+
+export default function InventoryAvailable({ variants }: InventoryAvailableProps) {
     const searchParams = useSearchParams();
     const [selectedVariantId, setSelectedVariantId] = useState(variants[0]?.id);
     const variantSelected = variants.filter((variant: any) => variant.id === selectedVariantId);
-    const { quantityAvailable } = variantSelected[0];
+    const quantityAvailable = variantSelected[0]?.quantityAvailable;
     
     useEffect(() => {
     const variant = variants.find((variant: ProductVariant) =>
