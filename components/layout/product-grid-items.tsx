@@ -20,6 +20,7 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
               src={product.featuredImage?.url}
               width={600}
               height={600}
+              product={product}
             />
           </Link>
         </Grid.Item>

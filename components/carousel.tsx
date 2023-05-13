@@ -15,12 +15,12 @@ export async function Carousel() {
           <Link
             key={`${product.handle}${i}`}
             href={`/product/${product.handle}`}
-            className="relative h-[30vh] w-1/2 flex-none md:w-1/3"
+            className="relative h-[30vh] w-1/2 flex-none md:w-1/3 flex items-center justify-center"
           >
             {product.featuredImage ? (
               <Image
                 alt={product.title}
-                className="h-full object-contain"
+                className="h-full object-contain text-sm text-center"
                 fill
                 sizes="33vw"
                 src={product.featuredImage.url}

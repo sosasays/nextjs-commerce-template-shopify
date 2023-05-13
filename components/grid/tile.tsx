@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 
+import LowStockBadge from 'components/layout/low-stock-badge';
 import Price from 'components/price';
 
 export function GridTileImage({
@@ -8,9 +9,11 @@ export function GridTileImage({
   background,
   active,
   labels,
+  product,
   ...props
 }: {
   isInteractive?: boolean;
+  product?: any;
   background?: 'white' | 'pink' | 'purple' | 'black' | 'purple-dark' | 'blue' | 'cyan' | 'gray';
   active?: boolean;
   labels?: {
@@ -53,16 +56,17 @@ export function GridTileImage({
             data-testid="product-name"
             className={clsx(
               'inline bg-white box-decoration-clone py-3 pl-5 font-semibold leading-loose shadow-[1.25rem_0_0] shadow-white dark:bg-black dark:shadow-black',
-              !labels.isSmall ? 'text-3xl' : 'text-lg'
+              !labels.isSmall ? 'text-xs' : 'text-sm'
             )}
           >
             {labels.title}
           </h3>
           <Price
-            className="w-fit bg-white px-5 py-3 text-sm font-semibold dark:bg-black dark:text-white"
+            className="w-fit bg-white px-5 py-3 text-xs font-semibold dark:bg-black dark:text-white"
             amount={labels.amount}
             currencyCode={labels.currencyCode}
           />
+          <LowStockBadge product={product}/>
         </div>
       ) : null}
     </div>
