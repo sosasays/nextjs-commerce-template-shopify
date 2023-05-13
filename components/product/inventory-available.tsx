@@ -3,6 +3,7 @@
 import { ProductVariant } from 'lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 type InventoryAvailableProps = {
   variants: ProductVariant[];
@@ -28,7 +29,17 @@ export default function InventoryAvailable({ variants }: InventoryAvailableProps
 
     return (
         <div>
-            {quantityAvailable ? 'Inventory Available: ' + quantityAvailable : 'Inventory Available: ' + 'Out of Stock'}
+            {quantityAvailable && quantityAvailable > 0 ? (
+                <div className='flex items-center justify-center bg-green-50 border border-green-200 text-green-700 p-2 rounded shadow-sm mb-4'>
+                    <span className='mr-1'>Inventory Available: {quantityAvailable}</span>
+                    <FaCheckCircle />
+                </div>
+            ) : (
+                <div className='flex items-center justify-center bg-red-50 border border-red-200 text-red-700 p-2 rounded shadow-sm mb-4'>
+                    <span className='mr-1'>Inventory Available: 0</span>
+                    <FaTimesCircle />
+                </div>
+            )}
         </div>
     )
 }
