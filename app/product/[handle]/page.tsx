@@ -7,6 +7,7 @@ import Footer from 'components/layout/footer';
 import ProductGridItems from 'components/layout/product-grid-items';
 import { AddToCart } from 'components/product/add-to-cart';
 import { Gallery } from 'components/product/gallery';
+import InventoryAvailable from 'components/product/inventory-available';
 import { VariantSelector } from 'components/product/variant-selector';
 import Prose from 'components/prose';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
@@ -57,7 +58,7 @@ export default async function ProductPage({ params }: { params: { handle: string
   const product = await getProduct(params.handle);
 
   if (!product) return notFound();
-
+  
   return (
     <div>
       <div className="lg:grid lg:grid-cols-6">
@@ -80,7 +81,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           {product.descriptionHtml ? (
             <Prose className="mb-6 text-sm leading-tight" html={product.descriptionHtml} />
           ) : null}
-
+          <InventoryAvailable quantityAvailable={product.variants[0].quantityAvailable}/>
           <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
         </div>
       </div>

@@ -38,6 +38,7 @@ const productFragment = /* GraphQL */ `
             amount
             currencyCode
           }
+          quantityAvailable @include(if: true)
         }
       }
     }
