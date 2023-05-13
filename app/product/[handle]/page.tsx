@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           {product.descriptionHtml ? (
             <Prose className="mb-6 text-sm leading-tight" html={product.descriptionHtml} />
           ) : null}
-          <InventoryAvailable quantityAvailable={product.variants[0].quantityAvailable}/>
+          <InventoryAvailable variants={product.variants}/>
           <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
         </div>
       </div>
