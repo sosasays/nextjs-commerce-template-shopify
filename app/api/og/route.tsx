@@ -3,13 +3,11 @@ import { NextRequest } from 'next/server';
 
 export const runtime = 'edge';
 
-const interRegular = fetch(new URL('./Inter-Regular.ttf', import.meta.url)).then((res) =>
-  res.arrayBuffer()
-);
+const interRegularURL = 'https://fonts.gstatic.com/s/inter/v3/YZaO6llzOP57DpTBv2GnyFKPGs1ZzpMvnHX-7fPOuAc.woff2';
+const interBoldURL = 'https://fonts.gstatic.com/s/inter/v3/OLr744FN6LqW3jb3mKirzTtXRa8TVwTICgirnJhmVJw.woff2';
 
-const interBold = fetch(new URL('./Inter-Bold.ttf', import.meta.url)).then((res) =>
-  res.arrayBuffer()
-);
+const interRegular = fetch(interRegularURL).then((res) => res.arrayBuffer());
+const interBold = fetch(interBoldURL).then((res) => res.arrayBuffer());
 
 export async function GET(req: NextRequest): Promise<Response | ImageResponse> {
   try {
@@ -45,15 +43,15 @@ export async function GET(req: NextRequest): Promise<Response | ImageResponse> {
             name: 'Inter',
             data: regularFont,
             style: 'normal',
-            weight: 400
+            weight: 400,
           },
           {
             name: 'Inter',
             data: boldFont,
             style: 'normal',
-            weight: 700
-          }
-        ]
+            weight: 700,
+          },
+        ],
       }
     );
   } catch (e) {
@@ -61,7 +59,7 @@ export async function GET(req: NextRequest): Promise<Response | ImageResponse> {
 
     console.log(e.message);
     return new Response(`Failed to generate the image`, {
-      status: 500
+      status: 500,
     });
   }
 }
