@@ -26,11 +26,6 @@ export async function Carousel() {
                 src={product.featuredImage.url}
               />
             ) : null}
-            <div className="absolute inset-y-0 right-0 flex items-center justify-center">
-              <div className="inline-flex bg-white p-4 text-xl font-semibold text-black dark:bg-black dark:text-white">
-                {product.title}
-              </div>
-            </div>
           </Link>
         ))}
       </div>

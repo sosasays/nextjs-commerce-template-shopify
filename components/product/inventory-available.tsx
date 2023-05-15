@@ -11,21 +11,18 @@ type InventoryAvailableProps = {
 
 export default function InventoryAvailable({ variants }: InventoryAvailableProps) {
     const searchParams = useSearchParams();
-    const [selectedVariantId, setSelectedVariantId] = useState(variants[0]?.id);
-    const variantSelected = variants.filter((variant: any) => variant.id === selectedVariantId);
-    const quantityAvailable = variantSelected[0]?.quantityAvailable;
+    const [quantityAvailable, setQuantityAvailable] = useState(variants[0]?.quantityAvailable);
     
     useEffect(() => {
-    const variant = variants.find((variant: ProductVariant) =>
-      variant.selectedOptions.every(
-        (option) => option.value === searchParams.get(option.name.toLowerCase())
-      )
+    const variant = variants.find((variant: ProductVariant) => 
+      variant.selectedOptions.every((option) => option.value === searchParams.get(option.name.toLowerCase()))
     );
-
+        
     if (variant) {
-      setSelectedVariantId(variant.id);
+      setQuantityAvailable(variant.quantityAvailable);
     }
-  }, [searchParams, variants, setSelectedVariantId]);
+    
+  }, [searchParams, variants]);
 
     return (
         <div>

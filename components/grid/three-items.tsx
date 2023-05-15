@@ -30,6 +30,7 @@ function ThreeItemGridItem({
             currencyCode: item.priceRange.maxVariantPrice.currencyCode
           }}
           product={item}
+          context='homepage'
         />
       </Link>
     </div>
